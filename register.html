@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>註冊頁面</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <div class="register-container">
+    <div class="register-card">
+      <h1 class="register-title">會員註冊</h1>
+      <form class="register-form">
+        <div class="form-group">
+          <label for="username">用戶名</label>
+          <input type="text" id="username" placeholder="輸入用戶名" required>
+        </div>
+        <div class="form-group">
+          <label for="email">電子郵件</label>
+          <input type="email" id="email" placeholder="輸入電子郵件" required>
+        </div>
+        <div class="form-group">
+          <label for="password">密碼</label>
+          <input type="password" id="password" placeholder="輸入密碼" required>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">確認密碼</label>
+          <input type="password" id="confirm-password" placeholder="再次輸入密碼" required>
+        </div>
+        <button type="submit" class="register-btn">立即註冊</button>
+        <p class="register-footer">已經有帳戶了？<a href="index.html">立即登入</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

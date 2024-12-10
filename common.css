@@ -6,13 +6,14 @@
 .pager a {
   border: 1px solid #d8d8d8;
   padding: 5px 10px;
+  transition: all 0.3s ease;
 }
 
 .pager a:hover {
   border-color: #ef4238;
 }
 
-.pager a.select {
+.pager a.selected {
   background: #ef4238;
   color: #fff;
   border: none;

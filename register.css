@@ -1,0 +1,98 @@
+/* 通用樣式重置 */
+body, h1, p, a, form, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* 頁面背景 */
+  body {
+    background: linear-gradient(135deg, #e74c3c, #3498db);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* 註冊容器 */
+  .register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+  }
+  
+  /* 註冊卡片 */
+  .register-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+  }
+  
+  /* 標題 */
+  .register-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* 表單組 */
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  /* 按鈕樣式 */
+  .register-btn {
+    background: #e74c3c;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .register-btn:hover {
+    background: #c0392b;
+  }
+  
+  /* 註冊頁腳 */
+  .register-footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .register-footer a {
+    color: #3498db;
+    text-decoration: none;
+  }
+  
+  .register-footer a:hover {
+    text-decoration: underline;
+  }
+  

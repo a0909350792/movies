@@ -20,14 +20,33 @@ body {
   text-align: center;
 }
 
-.main .nav a {
+.main .nav .left a {
   float: left;
   display: inline;
   margin: 0 30px;
   text-align: center;
 }
 
-.main .nav a:hover {
+
+
+.main .nav .right .right-href a {
+  float: right;
+  margin: 0 30px;
+  
+}
+#loginBtn{
+  margin-left: 550px ;
+}
+
+.main .nav .right .right-icon a {
+  float: right;
+  display: inline;
+  margin: 0 20px;
+  text-align: center;
+}
+
+
+.main .nav  a:hover {
   color: #fff;
 }
 
@@ -118,7 +137,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 0 2px;
+  padding: 5px 2px;
   text-align: center;
 }
 
@@ -131,4 +150,34 @@ body {
 
 .main .container .movies .movie-item .score::first-letter {
   font-size: 1.5em;
+}
+
+/* 回到頁頭按鈕樣式 */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background-color: #0056b3;
 }
