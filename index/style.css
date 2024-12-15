@@ -1,0 +1,843 @@
+body {
+  color: #333;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.main {
+  line-height: 1.5;
+  margin: 0 170px; /* 左右預留空間給廣告 */
+  padding-bottom: 100px; /* 預留底部空間，根據需要調整這個值 */
+}
+
+
+.main .nav {
+  background: #47464a;
+  height: 80%;
+  line-height: 100px;
+  color: #999;
+  text-align: center;
+}
+
+.main .nav .left a {
+  float: left;
+  display: inline;
+  margin: 0 30px;
+  text-align: center;
+}
+
+#icon{
+  margin-left: 20px;
+}
+
+.main .nav .right .right-href a {
+  float: right;
+  margin: 0 auto;
+  margin-left: 50px;
+ 
+}
+
+.main .nav .right .right-icon a {
+  float: right;
+  display: inline;
+  margin: 0 20px;
+  text-align: center;
+}
+
+.main .nav a:hover {
+  color: #fff;
+}
+
+.main .nav a.selected {
+  color: #ef4238;
+}
+
+.main .nav a img {
+  display: block;
+  height: 60px;
+}
+
+.main .container {
+  width: 1520px;
+  margin: 0 auto;
+}
+
+.main .container .select button {
+  height: 20px;
+  width: 20px;
+  border-radius: 100px;
+}
+
+.main .container .select input {
+  margin: 0 15px;
+  display: inline;
+}
+
+.main .container .movies .movie-item {
+  float: left;
+  width: 160px;
+  margin: auto 30px;
+}
+
+.main .container .movies .movie-item:nth-child(6n) {
+  margin-right: 20px;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+
+.main .container .movies .movie-item .poster img {
+  width: 200px;
+  height: 240px;
+}
+
+.main .container .movies .movie-item .name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.main .container .movies .movie-item .name a{
+  flex: 1; /* 名稱占滿剩餘空間 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* 過長文字顯示省略號 */
+  text-decoration: none; /* 移除超連結下劃線 */
+  color: #333; /* 設定文字顏色 */
+}
+
+
+.main .container .movies .movie-item .score {
+  color: #ffb400;
+  text-align: center;
+  line-height: 2.5;
+  font-style: italic;
+  margin-left: 50px;
+}
+
+.main .container .movies .movie-item .score::first-letter {
+  font-size: 1.5em;
+}
+
+/* 回到頁頭按鈕樣式 */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 170px;
+  width: 80px;
+  height: 80px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background-color: #0056b3;
+}
+
+/* 加入vip */
+.vip-btn {
+  color: gold;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  font-size: 1.2em; /* 初始字體大小 */
+  transition: color 0.3s ease-in-out, font-size 0.3s ease-in-out;
+  animation: sparkle 2s infinite, growFont 2s ease-in-out infinite alternate;
+}
+
+.vip-btn:hover {
+  color: #ffd700;
+  font-size: 1.5em;
+  transform: scale(1.2); /* 當滑鼠懸停時略微放大 */
+}
+
+.vip-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, gold, transparent);
+  transform: translateX(0%);
+  z-index: -1;
+  opacity: 0.7;
+  transition: transform 0.4s ease-in-out;
+}
+
+.vip-btn:hover::before {
+  transform: translateX(0%);
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px gold, 
+      0 0 10px gold, 
+      0 0 15px gold, 
+      0 0 20px #ffa500, 
+      0 0 30px #ffa500, 
+      0 0 40px #ff4500;
+  }
+  50% {
+    text-shadow: 
+      0 0 3px gold, 
+      0 0 8px gold, 
+      0 0 12px gold, 
+      0 0 18px #ffa500, 
+      0 0 25px #ffa500, 
+      0 0 35px #ff4500;
+  }
+}
+
+@keyframes growFont {
+  0% {
+    font-size: 1.2em;
+  }
+  100% {
+    font-size: 2em; /* 逐漸放大至 2 倍 */
+  }
+}
+
+/* 通用橫幅廣告樣式 */
+.banner {
+  position: fixed;
+  top: 0;
+  width: 160px; /* 廣告寬度 */
+  height: 100%; /* 撐滿整個視窗高度 */
+  background-color: #f0f0f0; /* 預設背景色，可移除 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.banner img {
+  max-width: 100%; /* 確保圖片不超出橫幅 */
+  height: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.banner img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* 左側橫幅 */
+.banner-left {
+  left: 0;
+}
+
+/* 右側橫幅 */
+.banner-right {
+  right: 0;
+}
+
+/* 主內容偏移，避免被橫幅遮擋 */
+.main {
+  margin: 0 170px; /* 左右各預留廣告寬度加間距 */
+}
+
+/* 保證內容適應小螢幕 */
+@media screen and (max-width: 768px) {
+  .banner {
+    display: none; /* 隱藏廣告，避免遮擋小螢幕內容 */
+  }
+
+  .main {
+    margin: 0; /* 還原內容居中 */
+  }
+}
+
+/* 浮窗背景樣式 */
+.ad-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;  /* 預設為隱藏 */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 浮窗內容區域 */
+.ad-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+/* 關閉按鈕 */
+.vip-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* VIP成功加入特效 */
+.vip-success {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #af4c7f;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 24px;
+  z-index: 2000;
+  animation: fadeIn 2s ease-out, fadeOut 2s 4s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+}
+
+/* 設置浮窗按鈕和內容的樣式 */
+#adModal {
+  display: none; /* 默認隱藏 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.ad-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+}
+
+/* 右上角的關閉按鈕 */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #af4c7f;
+}
+
+/* 登入按鈕容器樣式 */
+.login-container {
+  text-align: center; /* 將按鈕置中，根據需要修改 */
+  margin-top: 20px; /* 與上方元素保持間距 */
+}
+
+/* 登入按鈕樣式 */
+#login-btn {
+  padding: 10px 20px; /* 增加內部空間 */
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#login-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 修正浮動或彈性佈局影響 */
+.login-container:after {
+  content: "";
+  display: block;
+  clear: both; /* 清除浮動影響 */
+}
+
+#login-btn {
+  display: inline-block; /* 確保按鈕不受外部樣式影響 */
+  margin-left: 1000px;
+}
+
+/* 小螢幕適配 */
+@media screen and (max-width: 768px) {
+  #login-btn {
+    width: 100%; /* 在小螢幕上撐滿寬度 */
+    font-size: 14px; /* 調整字體大小 */
+  }
+}
+
+/* 加入VIP按鈕 */
+#adBtn, #joinMemberBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #af4c7f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#adBtn:hover, #joinMemberBtn:hover {
+  background-color: #9d3f6b; /* 滑鼠懸停顏色 */
+}
+
+/* 提高顯示的視覺效果 */
+#adBtn:focus, #joinMemberBtn:focus {
+  outline: none;
+}
+
+/* 頁碼容器 */
+.pager {
+  text-align: center; /* 頁碼居中*/
+  font-size: 16px;
+  color: #777;
+  padding: 10px 0;  /* 頁碼上下的間距 */
+  clear: both;  /* 清除浮動，避免受浮動元素影響 */
+  margin-top: 0px;  /* 頁碼上方的間距 */
+  position: relative;  /* 確保頁碼在內容區域內 */
+}
+
+/* 頁碼鏈接 */
+.pager a {
+  text-decoration: none;
+  color: #777;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0 5px;  /* 頁碼間距 */
+}
+
+.pager a:hover {
+  background-color: #ef4238;
+  color: white;
+}
+
+.pager a.selected {
+  background-color: #ef4238;
+  color: white;
+}
+
+.pager a.disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+
+.vip-button {
+  background: linear-gradient(45deg, #ffdd00, #ff9900, #ffdd00);
+  color: #333;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  animation: shine 2s infinite;
+  transition: transform 0.3s ease;
+}
+
+.vip-button:hover {
+  transform: scale(1.1);
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+.vip-button {
+  background-size: 200% auto;
+}
+
+#register:hover{
+  color: #e54813;
+}
+
+/* 加入輪播圖樣式 */
+.choose-area {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-left: 90px;
+  overflow: hidden; /* 隱藏超出範圍的內容，確保輪播圖不會影響其他元素 */
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* 平滑過渡效果 */
+  width: 100%;
+}
+
+.carousel-slide {
+  min-width: 100%; /* 每張圖片占據100%寬度 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-slide img {
+  width: 35%; /* 圖片寬度占滿容器 */
+  height: 50%; /* 確保圖片高度一致 */
+
+  padding-bottom: 400px;
+  object-fit: contain; /* 確保圖片完整顯示 */
+}
+
+
+/* 控制按鈕樣式 */
+#change-button {
+  position: absolute;
+  top: 50%; /* 讓按鈕垂直居中 */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 1; /* 確保按鈕在圖片上方 */
+}
+
+#change-button button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+/* 小縮圖容器設置 */
+.carousel-thumbnails {
+  position: absolute;
+  bottom: 0; /* 固定縮圖在輪播圖的底部 */
+  width: 100%;
+  display: flex; /* 讓縮圖排列成一行 */
+  justify-content: center;
+  gap: 10px; /* 縮圖之間的間距 */
+  padding: 5px 0; /* 在上下設置間距 */
+  background-color: rgba(0, 0, 0, 0.5); /* 添加背景色，讓縮圖更加清晰 */
+  z-index: 2; /* 確保縮圖在圖片上方 */
+}
+
+.carousel-thumbnails img {
+  width: 60px;  /* 設定縮圖的寬度 */
+  height: 40px; /* 設定縮圖的高度 */
+  object-fit: cover; /* 保持縮圖比例 */
+  cursor: pointer;
+  border: 2px solid transparent;  /* 預設無邊框 */
+  transition: border 0.3s ease; /* 邊框顏色變化的過渡效果 */
+}
+
+/* 當前選中的縮圖加上紅色邊框 */
+.carousel-thumbnails img.active {
+  border-color: red;
+}
+
+/* 滑鼠懸停時，縮圖邊框變色 */
+.carousel-thumbnails img:hover {
+  border-color: #ccc;
+}
+
+.favorite-icon {
+  font-size: 24px;
+  color: yellow; /* 未收藏时为黄色 */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.favorite-icon.favorited {
+  color: red; /* 收藏后为红色 */
+}
+
+
+.star {
+  font-size: 20px;
+  color: gray;
+  cursor: pointer;
+}
+
+.star.full {
+  color: gold;
+}
+
+.star.half {
+  color: gold;
+  position: relative;
+}
+
+.star.empty {
+  color: gray;
+}
+
+
+
+/* 漢堡按鈕樣式 */
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger-menu .bar {
+  width: 100%;
+  height: 4px;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* 漢堡清單 */
+.hamburger-dropdown {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.hamburger-dropdown ul {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+}
+
+.hamburger-dropdown ul li {
+  margin: 10px 0;
+}
+
+.hamburger-dropdown ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger-dropdown ul li a:hover {
+  background-color: #f0f0f0;
+}
+
+/* 漢堡按鈕激活樣式 */
+.hamburger-menu.active .bar:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* 清單顯示狀態 */
+.hamburger-dropdown.show {
+  left: 0;
+}
+
+#favorites-modal {
+  display: none;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.5) !important; /* 半透明黑色背景 */
+  justify-content: center !important; /* 水平居中 */
+  align-items: center !important; /* 垂直居中 */
+  z-index: 1000 !important; /* 確保在最上層 */
+}
+
+/* 模態框內的內容 */
+.modal-content {
+
+  background-color: #fff !important;
+  padding: 20px !important;
+  border-radius: 8px !important;
+  width: 80% !important; /* 設置寬度為屏幕的 80% */
+  max-width: 600px !important; /* 限制最大寬度 */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1) !important;
+  text-align: center !important; /* 文字居中 */
+}
+
+/* 關閉按鈕 */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+/* 收藏夾列表 */
+#favorites-list {
+  max-height: 400px;
+  overflow-y: auto; /* 當內容過多時出現滾動條 */
+  margin-bottom: 20px;
+}
+
+/* 單個收藏項目 */
+.favorite-item {
+  display: flex;
+  justify-content: space-between; /* 項目左右對齊 */
+  align-items: center; /* 垂直居中 */
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.favorite-item img {
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.favorite-item button {
+  background-color: #ff4d4f;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.favorite-item button:hover {
+  background-color: #ff3333;
+}
+
+/* 清空收藏夾按鈕 */
+.clear-favorites {
+  background-color: #52c41a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.clear-favorites:hover {
+  background-color: #4CAF50;
+}
+
+/* 標題和消息 */
+h2 {
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+/* 初始心形樣式 */
+.heart {
+  margin-left: 8px;
+  flex-shrink: 0; /* 避免愛心被壓縮 */
+  font-size: 20px;
+  color: #aaa; /* 灰色 */
+  cursor: pointer;
+  transition: all 0.3s ease; /* 過渡效果 */
+}
+
+/* 已收藏的紅色心形 */
+.heart[data-selected="true"] {
+  color: red; /* 變紅 */
+  transform: scale(2); /* 放大 */
+}
+
+/* 恢復正常大小 */
+.heart[data-selected="true"]:not(:hover) {
+  transform: scale(1); /* 還原為原始大小 */
+}
+
+/* 點擊時的動態效果 */
+.heart:active {
+  transform: scale(1.2); /* 輕微縮小 */
+}
+
+
+.loading-message {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  padding: 20px;
+}

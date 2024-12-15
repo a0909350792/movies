@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="login.css">
+    <script src="index.js" defer></script>
+    <script src="login.js" defer></script>
+    <link rel="stylesheet" href="common.css">
+    <title>movies</title>
+  </head>
+  <body>
+
+     
+
+  
+
+    <div class="main">
+      
+      <nav class="nav">
+        <div class="left">
+        <a href="index.html"><img style="border-radius: 50%;" src="movie.jpg" alt="" /></a>
+        <div class="right-a nav-links">
+        <a href="no-ads.html" class="selected">正在熱映</a>
+        <a href="no-ads.html">即將上映</a>
+        <a href="no-ads.html">經典影片</a>
+      </div>
+      </div>
+      <div class="right">
+        <div class="right-icon">
+        <a href="https://www.netflix.com/tw/"><img src="a.jpg" alt=""></a>
+        <a href="https://www.disneyplus.com/en-au"><img src="b.jpeg" alt=""></a>
+        <a href="https://www.max.com/tw/zh"><img src="c.png" alt=""></a>
+        </div>
+        <button class="vip-button" onclick="alert('歡迎，尊貴的VIP！')">尊貴VIP</button>
+
+
+
+      </nav>
+      
+       <div class="container"> <div class="choose-area"> <div class="choose-item clearfix"> <div class="left">類型:</div> <div class="right"> <ul id="type-list"> <li class="selected"><a href="#">超自然</a></li> <li><a href="#">科幻</a></li> <li><a href="#">恐怖</a></li> <li><a href="#">喜劇</a></li> <li><a href="#">動作</a></li> <li><a href="#">浪漫</a></li> <li><a href="#">劇情</a></li> <li><a href="#">犯罪</a></li> <li><a href="#">動畫</a></li> <li><a href="#">奇幻</a></li> <li><a href="#">冒險</a></li> </ul> </div> </div> <div class="choose-item clearfix"> <div class="left">地區:</div> <div class="right"> <ul id="region-list"> <li class="selected"><a href="#">臺灣</a></li> <li><a href="#">北美</a></li> <li><a href="#">歐洲</a></li> <li><a href="#">亞洲</a></li> <li><a href="#">南美</a></li> <li><a href="#">非洲</a></li> <li><a href="#">澳大利亞</a></li> <li><a href="#">中東</a></li> <li><a href="#">南亞</a></li> <li><a href="#">中亞</a></li> <li><a href="#">東南亞</a></li> </ul> </div> </div> <div class="choose-item clearfix noline"> <div class="left">年代:</div> <div class="right"> <ul id="year-list"> <li class="selected"><a href="#">now</a></li> <li><a href="#">2020s</a></li> <li><a href="#">2010s</a></li> <li><a href="#">2000s</a></li> <li><a href="#">1990s</a></li> <li><a href="#">1980s</a></li> <li><a href="#">1970s</a></li> <li><a href="#">1960s</a></li> <li><a href="#">1950s</a></li> <li><a href="#">1940s</a></li> <li><a href="#">1930s</a></li> </ul> </div> </div> </div>
+
+        <div class="select">
+          <input type="radio" name="select" value="popular" checked />按熱門排序
+          <input type="radio" name="select" value="time" />按字母排序
+          <input type="radio" name="select" value="score" />按評價排序
+        </div>
+
+        <div class="movies">
+         <!-- 電影自動生成 -->
+        </div>
+            <!-- 頁碼 -->
+            <div class="pager clearfix">
+                <a href="#" class="prev">上一頁</a>
+                <a href="#" class="page-number selected" data-page="1">1</a>
+                <a href="#" class="page-number" data-page="2">2</a>
+                <a href="#" class="page-number" data-page="3">3</a>
+                <a href="#" class="page-number" data-page="4">4</a>
+                <a href="#" class="page-number" data-page="5">5</a>
+                <a href="#" class="page-number" data-page="6">6</a>
+                <a href="#" class="page-number" data-page="7">7</a>
+                <a href="#" class="page-number" data-page="8">8</a>
+                <a href="#" class="page-number" data-page="9">9</a>
+                <a href="#" class="page-number" data-page="10">10</a>
+                <a href="#" class="next">下一頁</a>
+
+               
+                <!-- 回到頁頭按鈕 -->
+                   <button id="backToTop" class="back-to-top">▲ Click</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

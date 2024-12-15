@@ -1,130 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員登入</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .form-container {
-            max-width: 400px;
-            margin: 50px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-container h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .form-container label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        .form-container input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .form-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .form-container button:hover {
-            background-color: #0056b3;
-        }
-
-        .error-message {
-            color: red;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>Document</title>
 </head>
 <body>
-    <div class="form-container">
-        <h2>會員登入</h2>
-        <form id="loginForm">
-            <label for="username">用戶名</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">密碼</label>
-            <input type="password" id="password" name="password" required>
-            <span class="error-message" id="passwordError"></span>
-
-            <button type="submit">登入</button>
-        </form>
-    </div>
-
     <script>
-        const loginForm = document.getElementById('loginForm');
-        const passwordInput = document.getElementById('password');
-        const passwordError = document.getElementById('passwordError');
-
-        let lastKeypressTime = 0;
-        let totalInputTime = 0;
-        let keyPressCount = 0;
-
-        // 監聽密碼輸入速度
-        passwordInput.addEventListener('keypress', (event) => {
-            const currentTime = Date.now();
-
-            if (lastKeypressTime !== 0) {
-                const timeDiff = currentTime - lastKeypressTime;
-                totalInputTime += timeDiff;
-            }
-
-            lastKeypressTime = currentTime;
-            keyPressCount++;
-        });
-
-        // 表單提交邏輯
-        loginForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // 阻止表單提交
-
-            // 計算平均輸入速度
-            const averageTimePerKey = totalInputTime / keyPressCount;
-
-            // 設定密碼速度的最低安全限制 (假設 80ms 是正常速度的下限)
-            const minimumAllowedSpeed = 2000; // 單位：毫秒/按鍵
-
-            if (averageTimePerKey < minimumAllowedSpeed) {
-                passwordError.textContent = "密碼輸入速度過快，請重新嘗試！";
-                return;
-            }
-
-            // 驗證密碼是否正確（這裡僅作示例，應在伺服器端處理）
-            const correctPassword = "123456"; // 假設的正確密碼
-            if (passwordInput.value !== correctPassword) {
-                passwordError.textContent = "密碼錯誤，請再試一次。";
-                return;
-            }
-
-            passwordError.textContent = "";
-            alert("登入成功！");
-            // 在這裡處理後續邏輯，例如發送表單數據到伺服器
-        });
-    </script>
+const newMovies = [
+  {
+    name: "電影1",
+    image: "movie1.jpg",
+    score: 8.5,
+    numberOfRatings: 150
+  },
+  {
+    name: "電影2",
+    image: "movie2.jpg",
+    score: 7.0,
+    numberOfRatings: 200
+  },
+  {
+    name: "電影3",
+    image: "movie3.jpg",
+    score: 9.2,
+    numberOfRatings: 500
+  }
+];
+</script>
 </body>
 </html>
