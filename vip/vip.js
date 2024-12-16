@@ -13,7 +13,7 @@ document.getElementById('joinVipBtn').addEventListener('click', function () {
       setTimeout(function() {
         alert('恭喜您已成功加入 VIP！開始享受專屬特權！');
         // 跳轉到無廣告頁面
-        window.location.href = 'no-ads.html';  // 假設這是無廣告頁面的 URL
+        window.location.href = '../index/no-ads.html';  // 假設這是無廣告頁面的 URL
       }, 2000);  // 2秒後跳轉
     }
   });

@@ -9,30 +9,28 @@ body {
     line-height: 1.6;
 }
 
-/* 登入按鈕的樣式 */
+/* 登入按鈕樣式 */
 #loginBtn {
-    display: block;
-    width: 200px;
-    margin: 0 auto;
-    margin-left: 300px;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(45deg, #af4c7f, #9a3e68);
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #4CAF50, #388E3C); /* 綠色漸變 */
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 #loginBtn:hover {
-    background: linear-gradient(45deg, #9a3e68, #af4c7f);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
+  background: linear-gradient(45deg, #388E3C, #4CAF50); /* 深綠色漸變 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
+
 
 /* 模態框樣式 */
 .modal {
@@ -209,16 +207,111 @@ body {
 
 
 
+
 /* 用戶選單外層容器 */
 .user-menu {
-    position: relative;
-    display: inline-block;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+  top: 20px;
+  display: inline-block;
+  text-align: center;
+  z-index: 2000;
+}
+
+/* 用戶按鈕樣式 */
+#userBtn {
+  align-items: center;
+  justify-content: center;
+  padding: 20px 80px;
+  padding-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #007BFF, #0056b3);
+  border: none; /* 無邊框 */
+  border-radius: 25px; /* 圓角 */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-clip: padding-box; /* 背景覆蓋內邊距 */
+}
+
+#userBtn:hover {
+  background: linear-gradient(45deg, #0056b3, #007BFF);
+  transform: scale(1.05);
+}
+
+#userBtn span {
+  margin: 0; /* 確保無多餘邊距 */
+  padding: 0;
+}
+
+
+/* 用戶下拉菜單樣式 */
+#userDropdown {
+  margin-top: 10px;
+    top: 100%; /* 下拉菜單在按鈕下方 */
+  left: 50%;
+  transform: translateX(-50%);
+  display: none; /* 預設隱藏 */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 200px;
+  overflow: hidden;
+}
+
+/* 顯示下拉菜單時 */
+.user-menu.active #userDropdown {
+  display: block;
+}
+
+/* 下拉選單內部 */
+#dropdownMenu {
+  display: none;
+  padding: 10px 0;
+}
+
+#dropdownMenu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#dropdownMenu button:hover {
+  background-color: #f1f1f1;
+  color: #007BFF;
+}
+
+/* 登出按鈕樣式 */
+#logoutBtn {
+  width: 100%;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 16px;
+  color: white;
+  background: linear-gradient(45deg, #E53935, #D32F2F); /* 紅色漸變 */
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0 0 10px 10px;
+}
+
+#logoutBtn:hover {
+  background: linear-gradient(45deg, #D32F2F, #E53935); /* 深紅色漸變 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+}
   
   /* 用戶選單按鈕 */
   #userMenuBtn {
-    padding: 12px 24px;
+    /* padding: 12px 24px; */
     background-color: #007BFF; /* 藍色背景 */
     color: white;  /* 白色文字 */
     border: none;

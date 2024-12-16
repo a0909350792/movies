@@ -2,6 +2,12 @@ body {
   color: #333;
 }
 
+/* 設置選中狀態的樣式 */
+.active {
+  background-color: #47464a; /* 改變背景顏色 */
+  color: #ef4238;
+  /* 改變文字顏色 */
+}
 .clearfix::after {
   content: "";
   display: block;
@@ -17,21 +23,27 @@ body {
 
 .main .nav {
   background: #47464a;
-  height: 80%;
+  height: 100%;
   line-height: 100px;
   color: #999;
   text-align: center;
+  
 }
+
 
 .main .nav .left a {
   float: left;
   display: inline;
   margin: 0 30px;
   text-align: center;
+ 
+  
 }
 
 #icon{
-  margin-left: 20px;
+  margin-left: 100px;
+  margin-top: 20px;
+  
 }
 
 .main .nav .right .right-href a {
@@ -52,9 +64,7 @@ body {
   color: #fff;
 }
 
-.main .nav a.selected {
-  color: #ef4238;
-}
+
 
 .main .nav a img {
   display: block;
@@ -277,8 +287,25 @@ body {
     display: none; /* 隱藏廣告，避免遮擋小螢幕內容 */
   }
 
+  .nav .left{
+    display: none;
+  }
+  .nav .right{
+    display: none;
+  }
   .main {
     margin: 0; /* 還原內容居中 */
+  }
+
+  #favorites-modal {
+    display: none;
+    position: fixed !important;
+    width: 10% !important;
+    height: 10% !important;
+    background-color: rgba(0, 0, 0, 0.5) !important; /* 半透明黑色背景 */
+    justify-content: center !important; /* 水平居中 */
+    align-items: center !important; /* 垂直居中 */
+    z-index: 1000 !important; /* 確保在最上層 */
   }
 }
 
@@ -486,6 +513,7 @@ body {
 }
 
 .vip-button {
+  position: fixed;
   background: linear-gradient(45deg, #ffdd00, #ff9900, #ffdd00);
   color: #333;
   padding: 10px 20px;
@@ -546,6 +574,8 @@ body {
 .carousel-slide img {
   width: 35%; /* 圖片寬度占滿容器 */
   height: 50%; /* 確保圖片高度一致 */
+  width: 1200px;
+  height: 500px;
 
   padding-bottom: 400px;
   object-fit: contain; /* 確保圖片完整顯示 */
@@ -638,13 +668,15 @@ body {
 
 
 
+
 /* 漢堡按鈕樣式 */
 .hamburger-menu {
   display: flex;
+  position: fixed;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 25px;
+  width: 100px;
+  height: 90px;
   cursor: pointer;
   z-index: 1001;
 }
@@ -652,7 +684,7 @@ body {
 .hamburger-menu .bar {
   width: 100%;
   height: 4px;
-  background-color: #333;
+  background-color: #fff;
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -667,7 +699,7 @@ body {
   background-color: #fff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transition: left 0.3s ease;
-  z-index: 1000;
+  z-index: 1002;
 }
 
 .hamburger-dropdown ul {

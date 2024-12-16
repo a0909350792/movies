@@ -1,21 +1,27 @@
 
 // 示例電影數據庫
 const onlineMovies = [
-  { name: '動作電影1', image: 'action1.jpg', score: 8.1 },
-  { name: '動作電影2', image: 'action2.jpg', score: 7.8 },
-  { name: '動作電影3', image: 'action3.jpg', score: 8.4 },
+  { name: 'Spider-Man', img: src="index/1.png" ,score: 8.2, numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'Ringu', score: 5.5, img: src="index/2.png", numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'Memories of Murder', score: 7.3, img: src="index/3.png",  numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'The Incredibles', score: 6.1, img: src="index/4.png",  numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'Ratatouille', score: 9.0, img: src="index/5.png", numberOfRatings: Math.floor(Math.random() * 1000) + 1 }
 ];
 
 const comingMovies = [
-  { name: '科幻電影1', image: 'scifi1.jpg', score: 8.9 },
-  { name: '科幻電影2', image: 'scifi2.jpg', score: 7.5 },
-  { name: '科幻電影3', image: 'scifi3.jpg', score: 9.1 },
+  { name: '唐山大地震', img: src="index/6.png" , score: 8.2, numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'Lightyear', img: src="index/7.png" , score: 5.5, numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'Tokyo Story', img: src="index/8.png" ,score: 7.3, numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'Paris, Je T Aime', img: src="index/9.png" , score: 6.1, numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'The Wandering Earth 流浪地球', img: src="index/10.png" , score: 9.0, numberOfRatings: Math.floor(Math.random() * 1000) + 1 }
 ];
 
 const classicMovies = [
-  { name: '喜劇電影1', image: 'comedy1.jpg', score: 7.2 },
-  { name: '喜劇電影2', image: 'comedy2.jpg', score: 6.8 },
-  { name: '喜劇電影3', image: 'comedy3.jpg', score: 7.5 },
+  { name: '3 Idiots', img: src="index/11.png" , score: 8.2, numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'The Little Mermaid',img: src="index/12.png" , score: 5.5, numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: '你好，李煥英',img: src="index/13.png" , score: 7.3, numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'Sholay',img: src="index/14.png" , score: 6.1, numberOfRatings: Math.floor(Math.random() * 1000) + 1 },
+  { name: 'The Secret in Their Eyes',img: src="index/15.png" , score: 9.0, numberOfRatings: Math.floor(Math.random() * 1000) + 1 }
 ];
 
 // 可以擴展更多類型的電影...
@@ -70,22 +76,27 @@ function getMoviesByCategory(category) {
 
 // 動態生成電影項目的函數
 function renderMovies(movies) {
-  const moviesContainer = document.getElementById('movies');
-  moviesContainer.innerHTML = ''; // 清空舊內容
+  const moviesContainer = document.getElementById('movies'); // 找到電影容器
+  moviesContainer.innerHTML = ''; // 清空容器內容
 
-  movies.forEach(movie => {
+  movies.forEach((movie, index) => {
+    const movieId = generateRandomId(); // 生成隨機的 data-id
+
     const movieItem = document.createElement('div');
     movieItem.className = 'movie-item';
+    movieItem.setAttribute('data-id', movie.id); // 為每個電影項目加入唯一的 data-id
     movieItem.innerHTML = `
       <div class="poster">
-        <img src="${movie.image}" alt="${movie.name}">
+        <img src="${movie.img}" alt="${movie.name}">
       </div>
       <div class="name">${movie.name}</div>
-      <div class="score">${movie.score}</div>
+      <div class="score">評分：${movie.score}</div>
+      <span class="heart" data-id="${movie.id}" data-selected="false">&#9825;</span>
     `;
     moviesContainer.appendChild(movieItem);
   });
 }
+
 
 // 切換篩選選項並更新電影列表
 document.querySelector('.hamburger-dropdown').addEventListener('click', event => {
@@ -151,9 +162,10 @@ function delayedNavigation(event) {
         // 先確保 score 是一個數字
       const score = parseFloat(movie.score) || 0; // 防止空值
       const totalStars = Math.round(score); // 取整數
+      const Stars = Math.floor(score / 2); // 計算完整星數
       const halfStar = score % 1 !== 0 ? true : false; // 是否有半顆星
-      const numberOfRatings = movie.numberOfRatings || 0; // 評分人數，默認為 0
-        // 創建星星
+      const numberOfRatings = movie.numberOfRatings || Math.floor(Math.random() * 1000) + 1;
+      // 創建星星
         let starsHtml = '';
         for (let i = 0; i < 5; i++) {
           if (i < totalStars) {
@@ -169,25 +181,29 @@ function delayedNavigation(event) {
       <div class="movie-item">
         <div class="poster">
           <a href="#">
-            <img src="${movie.image}" alt="${movie.name} 的海報">
+            <img src="${movie.img}" alt="${movie.name} 的海報">
           </a>
         </div>
+        
         <div class="name">
           <a href="#">${movie.name}</a>
+          <span class="heart" data-selected="false">&#9825;</span>
         </div>
+
         <div class="score">
-          <div class="rating">
-            ${starsHtml}
+          <div class="rating" data-score="${score}" data-ratings="${numberOfRatings}">
+            
           </div>
-          <span class="rating-number">(${numberOfRatings} 人評分)</span>
+          <span class="rating-number">avgScore：${(score).toFixed(1)} (${numberOfRatings} 人評分)</span>
         </div>
-        <span class="heart" data-selected="false">&#9825;</span>
-      </div>`;
-    }
+      </div>`
       
-  
+    
+     
+      }
   )
       .join('');
+      
 // 確保將這段 HTML 更新到容器中
 const contentArea = document.getElementById('movies');
 contentArea.innerHTML = newContent;
@@ -242,16 +258,43 @@ function generateRandomMovies(totalMovies) {
     "Crouching Tiger, Hidden Dragon 卧虎藏龙", "The Grandmaster 一代宗師",
     "Farewell My Concubine 霸王别姬", "Shadow 影", "Hero 英雄",
     "Lust, Caution 色，戒", "The Wandering Earth 流浪地球", "Ip Man 葉問",
-    "Better Days 少年的你", "The Crossing 太平輪"]
+    "Better Days 少年的你", "The Crossing 太平輪",
+
+    // 法國電影
+    "Amélie", "La Haine", "The Intouchables", "Blue is the Warmest Color", "La Vie en Rose",
+    "The Artist", "The Umbrellas of Cherbourg", "A Prophet", "Paris, Je T'Aime", "The Diving Bell and the Butterfly",
+
+    // 印度電影
+    "3 Idiots", "Lagaan", "Sholay", "Dilwale Dulhania Le Jayenge", "Dangal",
+    "Kabhi Khushi Kabhie Gham", "PK", "Barfi!", "Zindagi Na Milegi Dobara", "Bahubali: The Beginning",
+
+    // 韓國電影
+    "Oldboy", "Parasite", "Train to Busan", "The Handmaiden", "The Wailing",
+    "Memories of Murder", "Snowpiercer", "I Saw the Devil", "The Man from Nowhere", "Battles Without Honor and Humanity",
+
+    // 西班牙電影
+    "The Secret in Their Eyes", "Pan's Labyrinth", "The Skin I Live In", "Talk to Her", "The Orphanage",
+    "Volver", "All About My Mother", "The Others", "Open Your Eyes", "Thesis",
+
+    // 義大利電影
+    "La Dolce Vita", "The Bicycle Thief", "Cinema Paradiso", "Life is Beautiful", "8½",
+    "Il Postino", "The Great Beauty", "The Leopard", "Rocco and His Brothers", "The Consequences of Love",
+
+    // 日本電影
+    "Ringu", "Spirited Away", "Seven Samurai", "Battle Royale", "Akira Kurosawa's Dreams",
+    "Your Name", "Tokyo Story", "Ikiru", "Princess Mononoke", "Rashomon"
+];
+
 
 
   
   const movies = [];
   for (let i = 0; i < totalMovies; i++) {
       const randomName = movieNames[Math.floor(Math.random() * movieNames.length)];
-      const randomScore = (Math.random() * 3 + 7).toFixed(1); // 隨機評分：7.0 ~ 10.0
-      const randomImg = `https://via.placeholder.com/160x220?text=${encodeURIComponent(randomName)}`;
-      movies.push({ name: randomName, score: randomScore, img: randomImg });
+      const score = Math.random() * 9.9;
+      const roundedScore = Math.round(score * 10) / 10; // 四捨五入到一位小數
+      const randomImg = `posters/${Math.floor(Math.random() * 30) + 1}.png`; // 圖片範圍 1.png ~ 30.png
+      movies.push({ name: randomName,score: roundedScore, img: randomImg });
   }
   return movies;
 }
@@ -263,66 +306,66 @@ const allMovies = generateRandomMovies(300);
 let currentPage = 1; // 當前頁碼
 const moviesPerPage = 30; // 每頁顯示電影數量
 const totalPages = Math.ceil(allMovies.length / moviesPerPage); // 總頁數
-let tempRating = null; // 用來暫存用戶選擇的評分
 
-// 添加事件監聽器來處理評分
+let tempRating = null; // 初始化 tempRating 變數
+
 function enableRating() {
   const ratingContainers = document.querySelectorAll('.rating');
+
   ratingContainers.forEach(ratingContainer => {
     const stars = ratingContainer.querySelectorAll('.star');
-    
+
     stars.forEach(star => {
       star.addEventListener('click', (event) => {
-        const selectedValue = parseInt(event.target.getAttribute('data-value')); // 取得星星對應的分數
+        const selectedValue = parseInt(event.target.getAttribute('data-value')); // 獲取點擊星星的值
+        const totalRatings = parseInt(ratingContainer.getAttribute('data-ratings')) || 0 ; // 當前評分人數
+        const currentScore = parseFloat(ratingContainer.getAttribute('data-score')) || 0; // 當前平均分數
 
-        if (tempRating === null) {
-          // 第一次點擊，暫存評分並顯示預覽
-          tempRating = selectedValue;
-          updateStars(ratingContainer, tempRating);
-          alert('請再次點擊確認評分');
-        } else {
-          // 第二次點擊，提交評分
-          const totalRatings = parseInt(ratingContainer.getAttribute('data-ratings')) || 0;
-          const currentScore = parseFloat(ratingContainer.getAttribute('data-score')) || 0;
+        // 計算新的平均分數
+        const newScore = ((currentScore * totalRatings) + selectedValue) / (totalRatings + 1);
+        const newRatings = totalRatings + 1;
 
-          // 計算新的平均分數
-          const newScore = ((currentScore * totalRatings) + (tempRating * 2)) / (totalRatings + 1);
-          const newRatings = totalRatings + 1;
+        // 更新數據屬性
+        ratingContainer.setAttribute('data-score', newScore.toFixed(1));
+        ratingContainer.setAttribute('data-ratings', newRatings);
 
-          // 更新屬性
-          ratingContainer.setAttribute('data-score', newScore.toFixed(1));
-          ratingContainer.setAttribute('data-ratings', newRatings);
-
-          // 更新顯示
-          const scoreDisplay = ratingContainer.nextElementSibling;
-          scoreDisplay.textContent = `平均分數：${newScore.toFixed(1)} (${newRatings} 人評分)`;
-
-          // 清空暫存評分
-          tempRating = null;
+        // 更新分數顯示
+        const scoreDisplay = ratingContainer.nextElementSibling;
+        if (scoreDisplay) {
+          scoreDisplay.textContent = `avgScore：${newScore.toFixed(1)} (${newRatings} 人評分)`;
         }
+
+        // 更新星星顯示
+        updateStars(ratingContainer, selectedValue);
       });
     });
   });
 }
 
-// 更新星星的顯示
+// 更新星星顯示
 function updateStars(ratingContainer, selectedValue) {
   const stars = ratingContainer.querySelectorAll('.star');
   stars.forEach((star, index) => {
     if (index < selectedValue) {
       star.classList.add('full');
-      star.classList.remove('empty', 'half');
-    } else if (index === selectedValue && selectedValue % 1 !== 0) {
-      star.classList.add('half');
-      star.classList.remove('full', 'empty');
+      star.classList.remove('empty');
     } else {
       star.classList.add('empty');
-      star.classList.remove('full', 'half');
+      star.classList.remove('full');
     }
   });
 }
 
+// 初始化評分功能
+document.addEventListener('DOMContentLoaded', () => {
+  enableRating();
+});
+
+
+
+
 // 更新內容函數
+
 function updateContent() {
   const startIndex = (currentPage - 1) * moviesPerPage;
   const endIndex = currentPage * moviesPerPage;
@@ -331,13 +374,36 @@ function updateContent() {
   const movieListContainer = document.querySelector('.movies');
   movieListContainer.innerHTML = ''; // 清空當前顯示的內容
 
+  // 用來追蹤已顯示過的圖片
+  const displayedImages = new Set();
+
+  // 篩選出未顯示過的電影
+  const remainingMovies = allMovies.filter(movie => !displayedImages.has(movie.img));
+
+  // 確保每一頁都有不重複的圖片
+  let movieIndex = 0;
+
   moviesToDisplay.forEach((movie) => {
+    // 如果這部電影的圖片已經顯示過，從剩餘的未顯示過的圖片中選擇
+    if (displayedImages.has(movie.img)) {
+      // 選擇未顯示過的電影
+      const newMovie = remainingMovies[movieIndex];
+
+      // 使用新的圖片替換原來的電影圖片
+      movie.img = newMovie.img;
+      movie.name = newMovie.name;
+      movie.numberOfRatings = newMovie.numberOfRatings;
+
+      // 更新剩餘電影數組和顯示過的圖片集合
+      remainingMovies.splice(movieIndex, 1);  // 移除已使用的電影
+    }
+
     // 隨機生成分數（精確到 0.1），範圍為 0 到 10 分
-    const score = Math.random() * 10; 
+    const score = Math.random() * 9.9;
     const roundedScore = Math.round(score * 10) / 10; // 四捨五入到一位小數
     const totalStars = Math.floor(roundedScore / 2); // 每顆星 = 2 分
     const halfStar = roundedScore % 2 >= 1; // 判斷是否需要半顆星
-    const numberOfRatings = movie.numberOfRatings || 0; // 評分人數，默認為 0
+    const numberOfRatings = movie.numberOfRatings || Math.floor(Math.random() * 1000) + 1;
 
     // 生成星星的 HTML
     let starsHtml = '';
@@ -354,9 +420,11 @@ function updateContent() {
     const movieItem = document.createElement('div');
     movieItem.classList.add('movie-item');
     movieItem.innerHTML = `
+    
         <div class="poster">
+        
           <a href="#">
-            <img src="posters/1.png" alt="${movie.name} 的海報">
+            <img src="${movie.img}" alt="${movie.name} 的海報">
           </a>
         </div>
         
@@ -367,12 +435,15 @@ function updateContent() {
 
         <div class="score">
           <div class="rating" data-score="${score}" data-ratings="${numberOfRatings}">
-            ${starsHtml} <!-- 顯示星星 -->
+            ${starsHtml}
           </div>
-          <span class="rating-number">平均分數：${(score / 2).toFixed(1)} (${numberOfRatings} 人評分)</span>
+          <span class="rating-number">avgScore：${(score).toFixed(1)} (${numberOfRatings} 人評分)</span>
         </div>
     `;
     movieListContainer.appendChild(movieItem);
+
+    // 將當前圖片加入到已顯示的圖片集合中
+    displayedImages.add(movie.img);
   });
 
   // 啟用評分功能
@@ -380,24 +451,37 @@ function updateContent() {
 }
 
 
+
+
 // 默認排序規則
 let currentSort = 'popular'; // 當前排序規則
+
 
 
 
 // 排序函數
 function sortMovies(criteria) {
   if (criteria === 'score') {
-      // 按評分從高到低排序
-      allMovies.sort((a, b) => b.score - a.score);
+    // 按照平均分數從高到低排序
+    allMovies.sort((a, b) => {
+      const scoreA = parseFloat(a.score) || 0; // 確保是數字，若為空或無效則預設為 0
+      const scoreB = parseFloat(b.score) || 0; // 同上
+      return scoreB - scoreA; // 按照平均分數降序排序
+    });
   } else if (criteria === 'time') {
-      // 按字母順序排序（電影名稱的字母順序）
-      allMovies.sort((a, b) => a.name.localeCompare(b.name));
+    // 按字母順序排序（電影名稱的字母順序）
+    allMovies.sort((a, b) => a.name.localeCompare(b.name));
   } else if (criteria === 'popular') {
-      // 模擬按熱門排序（隨機排序）
-      allMovies.sort(() => Math.random() - 0.5);
+    // 按評分人數從多到少排序
+    allMovies.sort((a, b) => {
+      const ratingsA = parseInt(a.numberOfRatings) || 0; // 確保是數字，若為空或無效則預設為 0
+      const ratingsB = parseInt(b.numberOfRatings) || 0; // 同上
+      return ratingsB - ratingsA; // 按評分人數降序排序
+    });
   }
+  updateContent(); // 排序後重新更新內容
 }
+
 
 // 監聽排序選擇
 document.querySelectorAll('.select input[type="radio"]').forEach((radio) => {
@@ -413,13 +497,7 @@ document.querySelectorAll('.select input[type="radio"]').forEach((radio) => {
 updateContent();
 
 
-// 監聽排序選擇
-document.querySelector('.select').addEventListener('change', (event) => {
-  currentSort = event.target.value; // 獲取選中的排序規則
-  sortMovies(currentSort); // 根據排序規則排序
-  currentPage = 1; // 重置到第一頁
-  updateContent(); // 更新內容
-});
+
 
 // 更新分頁器的狀態
 function updatePager() {
@@ -623,7 +701,7 @@ function openFavoritesModal() {
       .map(favorite => `
         <div class="favorite-item" data-id="${favorite.id}">
           <p>
-            <img src="1.png" alt="${favorite.name}" width="50">
+            <img src="${favorite.img}" alt="${favorite.name}" width="50">
             ${favorite.name}
             <button class="remove-favorite" data-id="${favorite.id}">移除</button>
           </p>
@@ -673,19 +751,34 @@ document.querySelector('.favorite-things').addEventListener('click', (e) => {
   openFavoritesModal();  // 更新收藏夾界面
 });
 
+
 function removeFavorite(e) {
-  favorites.pop();
+  const movieId = e.target.getAttribute('data-id'); // 獲取隨機生成的 data-id
+  
+  if (!movieId) {
+    console.error('無法找到目標的 data-id，請檢查 HTML 結構。');
+    return;
+  }
+
+  // 從收藏清單中移除該電影
+  favorites = favorites.filter(movie => movie.id !== movieId);
+
   alert("已移除該收藏！");
 
   // 刷新收藏夾內容
   openFavoritesModal();
- // 將所有心形按鈕設為空心
- document.querySelectorAll('.heart[data-selected="true"]').forEach(heart => {
-  heart.setAttribute('data-selected', 'false');
-  heart.innerHTML = '&#9825;'; // 空心心形
-});
-  
+
+  // 更新對應的心形按鈕為空心
+
+  const heart = document.querySelector(`.heart[data-id="${movieId}"]`);
+  if (heart) {
+    heart.setAttribute('data-selected', 'false');
+    heart.innerHTML = '&#9825;'; // 空心心形
+  }
 }
+
+
+
 
 // 清空收藏夾功能
 function clearFavorites() {
@@ -703,6 +796,9 @@ function clearFavorites() {
 
 }
 
+function generateRandomId() {
+  return 'id-' + Math.random().toString(36).substr(2, 9) + Date.now();
+}
 
 
 // 收藏夾數組
@@ -712,14 +808,16 @@ let favoritesMovies = [];
 document.addEventListener('click', (e) => {
   if (e.target.classList.contains('heart')) {
     const heart = e.target;
-    const movieId = heart.closest('.movie-item').getAttribute('data-id'); // 獲取電影 ID
+    // const movieId = generateRandomId(); // 生成隨機的 data-id
+    const movieId = generateRandomId();
+    // const movieId = heart.closest('.movie-item').getAttribute('data-id'); // 獲取電影 ID
     const movieName = heart.closest('.movie-item').querySelector('.name a').textContent;
-
+    const movieImg = heart.closest('.movie-item').querySelector('.poster img').src;
     if (heart.getAttribute('data-selected') === 'false') {
       // 添加到收藏
       heart.setAttribute('data-selected', 'true');
       heart.innerHTML = '&#9829;'; // 實心心形
-      favorites.push({ id: movieId, name: movieName }); // 添加到收藏列表
+      favorites.push({ id: movieId, name: movieName, img: movieImg }); // 添加到收藏列表
       openFavoritesModal(); // 更新收藏夾模態框內容
       alert(`${movieName} 已添加到收藏夾！`);
     } else {
@@ -735,33 +833,39 @@ document.addEventListener('click', (e) => {
   }
 });
 
+  
 
+// 獲取頁面中的超連結和漢堡選單中的對應項目
+const nowShowingBtn = document.getElementById('nowShowingBtn');
+const comingSoonBtn = document.getElementById('comingSoonBtn');
+const classicMoviesBtn = document.getElementById('classicMoviesBtn');
 
+const nowShowingMenu = document.getElementById('nowShowingMenu');
+const comingSoonMenu = document.getElementById('comingSoonMenu');
+const classicMoviesMenu = document.getElementById('classicMoviesMenu');
 
-// // 保存收藏夾到 localStorage
-// function saveFavorites() {
-//   localStorage.setItem('favorites', JSON.stringify(favorites));
-// }
+// 點擊切換功能
+function handleClick(clickedBtn, clickedMenu) {
+    // 移除所有超連結和菜單項目的 'active' 類
+    nowShowingBtn.classList.remove('active');
+    comingSoonBtn.classList.remove('active');
+    classicMoviesBtn.classList.remove('active');
+    
+    nowShowingMenu.classList.remove('active');
+    comingSoonMenu.classList.remove('active');
+    classicMoviesMenu.classList.remove('active');
+    
+    // 為點擊的超連結和對應的漢堡選單項目添加 'active' 類
+    clickedBtn.classList.add('active');
+    clickedMenu.classList.add('active');
+}
 
-// // 加載收藏夾
-// function loadFavorites() {
-//   const storedFavorites = localStorage.getItem('favorites');
-//   if (storedFavorites) {
-//     favorites = JSON.parse(storedFavorites);
+// 為每個超連結和漢堡選單項目添加點擊事件
+nowShowingBtn.addEventListener('click', () => handleClick(nowShowingBtn, nowShowingMenu));
+comingSoonBtn.addEventListener('click', () => handleClick(comingSoonBtn, comingSoonMenu));
+classicMoviesBtn.addEventListener('click', () => handleClick(classicMoviesBtn, classicMoviesMenu));
 
-//     // 更新 UI
-//     favorites.forEach(movie => {
-//       const heart = document.querySelector(`.movie-item[data-id="${movie.id}"] .heart`);
-//       if (heart) {
-//         heart.setAttribute('data-selected', 'true');
-//         heart.innerHTML = '&#9829;'; // 實心心形
-//       }
-//     });
-//   }
-// }
+nowShowingMenu.addEventListener('click', () => handleClick(nowShowingBtn, nowShowingMenu));
+comingSoonMenu.addEventListener('click', () => handleClick(comingSoonBtn, comingSoonMenu));
+classicMoviesMenu.addEventListener('click', () => handleClick(classicMoviesBtn, classicMoviesMenu));
 
-// // 加載收藏夾時調用
-// document.addEventListener('DOMContentLoaded', loadFavorites);
-
-
-// console.log(favorites);

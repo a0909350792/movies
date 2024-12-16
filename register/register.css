@@ -121,3 +121,27 @@ body, h1, p, a, form, input, button {
     text-decoration: underline;
   }
   
+  /* 註冊成功通知樣式 */
+  #successNotification {
+    position: fixed;
+    top: 50%; /* 垂直居中 */
+    left: 50%; /* 水平居中 */
+    transform: translate(-50%, -50%); /* 修正偏移量，達到真正居中 */
+    background-color: #4caf50; /* 綠色背景 */
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0; /* 初始隱藏 */
+    display: none; /* 初始隱藏 */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* 添加過渡效果 */
+    z-index: 1000;
+  }
+  
+
+#successNotification.show {
+  opacity: 1;
+  transform: translateY(0); /* 彈出效果 */
+}

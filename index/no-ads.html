@@ -13,65 +13,15 @@
   </head>
   <body>
 
-      <!-- 左側橫幅廣告 -->
-  <div class="banner banner-left">
-    <a href="https://www.example1.com" target="_blank">
-      <img src="left-ad.jpg" alt="Left Banner Ad">
-    </a>
-  </div>
+     
 
-  <!-- 右側橫幅廣告 -->
-  <div class="banner banner-right">
-    <a href="https://www.example2.com" target="_blank">
-      <img src="right-ad.jpg" alt="Right Banner Ad">
-    </a>
-  </div>
-
-  <!-- 浮窗廣告的 HTML 放置位置 -->
-  <div id="adModal" class="ad-modal">
-    <div class="ad-content">
-      <span class="vip-close-btn">&times;</span>
-      <p>加入VIP享有更多功能</p>
-      <button id="adBtn">加入VIP</button>
-      <button id="joinMemberBtn">加入會員</button>
-    </div>
-  </div>
-
+  
   
 
   <script>
-     document.addEventListener('DOMContentLoaded', () => {
-    const adModal = document.getElementById('adModal');  // 浮窗廣告
-    const vipCloseBtn = document.querySelector('.vip-close-btn');  // 關閉按鈕
-    const adBtn = document.getElementById('adBtn');  // 加入VIP按鈕
-    const joinMemberBtn = document.getElementById('joinMemberBtn');  // 加入會員按鈕
-
-    // 當用戶點擊關閉按鈕時，隱藏廣告
-    vipCloseBtn.addEventListener('click', () => {
-        adModal.style.display = 'none';
-    });
-
-    // 當用戶點擊「加入VIP」按鈕時，執行相應的動作
-    adBtn.addEventListener('click', () => {
-        // 這裡可以根據需求，跳轉到VIP的頁面，或者執行其他操作
-        alert('跳轉到VIP頁面');
-        window.location.href = '../vip/vip.html';
-    });
-
-    // 當用戶點擊「加入會員」按鈕時，執行相應的動作
-    joinMemberBtn.addEventListener('click', () => {
-        // 這裡可以根據需求，跳轉到註冊頁面，或者執行其他操作
-        alert('跳轉到註冊頁面');
-          window.location.href = '../register/register.html';
-    });
-});
-
-
-   
+    
 
 document.addEventListener('DOMContentLoaded', () => {
-  const adModal = document.getElementById('adModal'); // 廣告浮窗
-  const closeBtn = document.querySelector('.vip-close-btn'); // 廣告關閉按鈕
   const loginBtn = document.getElementById('loginBtn'); // 登入會員按鈕
   const loginModal = document.getElementById('loginModal'); // 登入會員浮窗
   const loginCloseBtn = document.querySelector('.close-btn'); // 登入浮窗關閉按鈕
@@ -83,16 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
   });
 
-  // 設置廣告浮窗計時器，10 秒後顯示
-  setTimeout(() => {
-    adModal.style.display = 'block'; // 顯示廣告浮窗
-  }, 10000000);
   
-
-  // 點擊關閉按鈕隱藏廣告浮窗
-  closeBtn.addEventListener('click', () => {
-    adModal.style.display = 'none';
-  });
 
   
   // 點擊登入浮窗的關閉按鈕隱藏浮窗
@@ -123,12 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
     <li><a href="#classic" data-category="classic" id="classicMoviesMenu">經典影片</a></li>
     <li><a href="#" id="favorites-link">我的收藏夾</a></li>
     <li><a href="../register/register.html">會員註冊</a></li>
-    <li><a href="../vip/vip.html">加入VIP</a></li>
+    
   </ul>
 </div>
 
         <div class="left">
-        <a class="selected" href="index.html"><img style="border-radius: 50%;" src="movie.jpg" alt="" id="icon"/></a>
+        <a class="selected" href="no-ads.html"><img style="border-radius: 50%;" src="movie.jpg" alt="" id="icon"/></a>
         <div class="nav-links">
           <nav class="nav-links">
             <a href="#online" data-category="online" id="nowShowingBtn">正在熱映</a>
@@ -161,8 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         </div>
         <div class="right-href">
-          <a href="../register/register.html" class="btn" id="register">會員註冊</a>
-          <a href="../vip/vip.html" class="btn vip-btn">加入VIP</a>
+          <a href="../register/register.html" class="registerBtn" id="register">會員註冊</a>
           
         </div>
         
